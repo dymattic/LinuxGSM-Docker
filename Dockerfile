@@ -26,9 +26,9 @@ ENV LGSM_VERSION="${ARG_LGSM_VERSION:?}" \
     LGSM_PATH="/home/linuxgsm" \
     LGSM_SCRIPTS="/home/linuxgsm-scripts" \
     PATH="$PATH:/home/linuxgsm-scripts/" \
-    LANG="en_US.UTF-8" \
-    LANGUAGE="en_US.UTF-8" \
-    LC_ALL="en_US.UTF-8" \
+    LANG="de_DE.UTF-8" \
+    LANGUAGE="de_DE.UTF-8" \
+    LC_ALL="de_DE.UTF-8" \
     TERM="xterm" \
     SUPERCRONIC_CONFIG="/home/linuxgsm-scripts/cron.config" \
     LGSM_STARTED="/home/linuxgsm/server.started"
@@ -67,8 +67,8 @@ WORKDIR "$LGSM_PATH"
 
 # install server specific dependencies
 FROM linuxgsm as specific
-ARG ARG_LGSM_GAMESERVER="gmodserver"
-ENV LGSM_GAMESERVER="${ARG_LGSM_GAMESERVER:?}"
+ARG LGSM_GAMESERVER
+ENV LGSM_GAMESERVER="${LGSM_GAMESERVER:?}"
 RUN set -eux; \
     installDependencies.sh "$LGSM_GAMESERVER"; \
     createAlias.sh "$LGSM_GAMESERVER"; \

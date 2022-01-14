@@ -1,14 +1,27 @@
 volumes:
-  server:
+  gmodserver:
+  csgoserver:
 
 services:
-    linuxgsm:
+    linuxgsm-gmod:
         build:
           context: .
           args:
             LGSM_GAMESERVER: gmodserver
         volumes:
-          - server:/home/linuxgsm
+          - gmodserver:/home/linuxgsm
           - /etc/localtime:/etc/localtime:ro
         restart: always
         tty: true
+    linuxgsm-csgo:
+        build:
+          context: .
+          args:
+            LGSM_GAMESERVER: csgoserver
+        volumes:
+          - csgoserver:/home/linuxgsm
+          - /etc/localtime:/etc/localtime:ro
+        restart: always
+        tty: true
+        ports:
+          - "27015:27015"
