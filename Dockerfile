@@ -67,8 +67,8 @@ WORKDIR "$LGSM_PATH"
 
 # install server specific dependencies
 FROM linuxgsm as specific
-ARG LGSM_GAMESERVER="gmodserver"
-ENV LGSM_GAMESERVER="${LGSM_GAMESERVER:?}"
+ARG ARG_LGSM_GAMESERVER="gmodserver"
+ENV LGSM_GAMESERVER="${ARG_LGSM_GAMESERVER:?}"
 RUN set -eux; \
     installDependencies.sh "$LGSM_GAMESERVER"; \
     createAlias.sh "$LGSM_GAMESERVER"; \
